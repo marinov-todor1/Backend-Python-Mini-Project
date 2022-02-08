@@ -2,3 +2,4 @@ venv/
 Tenyks/
 .pytest_cache/
 .open
+.DS_Store
