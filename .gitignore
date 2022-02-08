@@ -1,0 +1,4 @@
+venv/
+Tenyks/
+.pytest_cache/
+.open
