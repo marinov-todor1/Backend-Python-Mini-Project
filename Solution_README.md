@@ -32,7 +32,7 @@ proper scaling structures and send only an ERG diagram. I choose the latter.
    if Model data is uniform for all datasets.
    2. Further vertical segmentation could be utilized, if image columns are not always requested in bulk.
 
-![ERD](ERD.jpg)
+![ERD](DB_ERD.jpg)
 
 
 ## The Process
