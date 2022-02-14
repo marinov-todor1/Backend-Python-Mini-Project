@@ -8,14 +8,16 @@ class Image:
         self._model_image_category = {}
         self._model_image_heatmap = {}
         self._model_image_activations = {}
+        self._model_id = {}
+        self._dataset_name = {}
 
         self._aggregated_data = {"name": self._img_name, "img_bbox": self._img_bbox, "img_category": self._img_category,
                            "model_image_bbox": self._model_image_bbox, "model_image_category": self._model_image_category,
                            "model_image_heatmap": self._model_image_heatmap,
-                           "model_image_activations": self._model_image_activations}
+                           "model_image_activations": self._model_image_activations, "dataset_name": self._dataset_name, "model_id": self._model_id}
 
-    def record_img_metadata(self, name, bbox, category):
-        # check if name is compliant -> for example, contains the file extension (or not) #TODO
+    def record_img_metadata(self, name, bbox, category, dataset_name, model_id):
+        # check if name is compliant -> for example, contains the file extension (or not) # TODO
         self._aggregated_data["name"] = name
 
         # check if bbox is compliant with internal format, type, etc. before implementing #TODO
@@ -23,6 +25,12 @@ class Image:
 
         # check if category is compliant -> for example is integer, in range of (a, b) #TODO
         self._aggregated_data["img_category"] = category
+
+        # save dataset_name
+        self._aggregated_data["dataset_name"] = dataset_name
+
+        # save model_id
+        self._aggregated_data["model_id"] = model_id
 
     def record_model_img_metadata(self, model_img_bbox, model_img_category, heatmap, activations):
         # check if bbox is compliant with internal format, type, etc. before implementing #TODO

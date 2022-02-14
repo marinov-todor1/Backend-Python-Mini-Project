@@ -4,7 +4,7 @@ import pytest
 import cv2
 
 from Load import LoadImgMetadata
-from Processor import *
+import Processor
 
 dataset_dir = "./dataset_data/human_dataset/"
 dataset_img_dir = "./dataset_data/human_dataset/images"
@@ -48,7 +48,7 @@ def test_num_processed_objects(dataset_dir, dataset_img_dir):
     """ Test if all images were processed """
     model_id = 0
     dataset_size = len(os.listdir(dataset_img_dir))
-    count_of_processed_images = len(generate_image_info(dataset_dir, model_id))
+    count_of_processed_images = len(Processor.generate_image_info(dataset_dir, model_id))
     assert dataset_size == count_of_processed_images
 
 

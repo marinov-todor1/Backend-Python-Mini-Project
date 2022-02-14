@@ -6,6 +6,7 @@ from model_data import DummyModel
 
 class LoadImgMetadata():
     """ Collects image metadata from external datasets """
+
     def __init__(self, image_name, dataset_directory):
         # test for empty directories and incorrect naming
         if len(os.listdir(dataset_directory)) == 0:
@@ -21,7 +22,8 @@ class LoadImgMetadata():
 
         if len(self.img_folder) == 0:
             raise "No image files were found in 'images' folder"
-        elif len(os.listdir(self.annotations_folder)) == 0 or len(os.listdir(self.annotations_folder)) != len(os.listdir(self.img_folder)):
+        elif len(os.listdir(self.annotations_folder)) == 0 or len(os.listdir(self.annotations_folder)) != len(
+                os.listdir(self.img_folder)):
             raise "No annotation files were found in 'annotations' folder or their count does not match the image count"
         elif self.img_name not in os.listdir(self.img_folder):
             raise f"No image was found with name: {self.img_name}"
@@ -54,6 +56,7 @@ class LoadImgMetadata():
 
 class LoadImgModelData():
     """ Generates models metadata from external datasets"""
+
     def __init__(self, image_name, dataset_directory, model_id):
         # test for empty directories and incorrect naming
         if len(os.listdir(dataset_directory)) == 0:
@@ -88,4 +91,5 @@ class LoadImgModelData():
         bbox_category = self.generate_bbox_and_category_id()
         all_data = {"bbox": bbox_category['bbox'], "category_id": bbox_category['category_id'],
                     "heatmap": self.generate_heatmap(), "activations": self.generate_activations()}
+
         return all_data
