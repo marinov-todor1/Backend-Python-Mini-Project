@@ -1,85 +1,38 @@
-<<<<<<< HEAD
 # Backend Python Mini-Project 🦾
 
-# Tenyks Backend Take-Home Mini-Project 🦾
+#### Things yet to be fixed: 
+1. pytest needs debugging to resolve "ModuleNotFoundError:", while the module is definitely there
+2. Reader.py - All arrays are stored in the DB as strings. Converting them back to arrays and keeping the floating point
+values intact appears to require some additional encoding/decoding trickery. Ideally, different database technology should be used,
+one with native data type "array". Note: The more I read about how numpy works the worst idea it seems to convert the arrays 
+into strings and back - probably I will go with different DB.
 
+### How to run
 
-Dear Tenyksians, 
-
-Below I am describing the structure of my submission and the process it took to have it done to this stage.
-
-Note: Install requirements.txt before running
-
-The SDK call samples are in the Processor.py
-
+By running SDK.py it will extract and process all data, and save it into the DB. Also it will retrieve samples from the 
+DB for image, model and dataset.  
+After the first run line 13 "Processor.add_data_to_db(db_dir, datasets_dir)" should be excluded/commented, since the 
+data is already in the DB.
 
 ## Overview
-The overall design is inteded to split the code into four logical pieces:
-1. Load & Process - A loader /Load.py/ to deal with the reading of images/annotations from the file system and
-a processor /Processor.py/ to generate the internal representation for datasets, models and images.
-The processor is constructed to load all dataset data in bulk.
+The overall design is inteded to split the code into four logical parts (ETL + testing):
 
+1. Extract: A loader /Load.py/ to extract information about images/annotations from the file system.
 
-2. DataObjects.py defines the internal representation which should be used for processing and reading/writing from the DB.
+2. Transform:
+   1. A processor /Processor.py/ to generate the internal representation for datasets, models and images.
+   The processor is constructed to load all dataset data in bulk. 
+   2. DataObjects.py defines the internal representation which should be used for processing and reading/writing from the DB.
 
-Reader.py and Writer.py are meant for communication with the DB. Both are in progress
+3. Load:
+   1. Writer.py - handles the creation of tables and data insertion in the DB
+   2. Reader.py - handles the read and return of information from the DB to the internal representation defined in DataObjects.py
+   3. datasets.db - SQLite database
 
+4. Test.py contains some lightweight tests. Pytest is misbehaving and will be debugged at the end.
 
-3. Test.py contains some lightweight tests. Pytest is misbehaving and will be debugged at the end.
-
-4. For the DB the idea is to use horizontal partitioning per dataset and mode, in order to maintain the performance at scale. 
+For the DB the idea is to use horizontal partitioning for each combination of dataset and model, in order to maintain the performance at scale. 
 Each new dataset processed with any given model or old dataset processed with new model will be recorded in
 new separate table. Further vertical segmentation could be utilized, if image columns are not always requested in bulk.
 
 ![ERD](DB_ERD.jpg)
-
-Reader.py and Writer.py were meant for communication with the DB, where the Writer could potentially utilze the Singleton
-pattern if the DB does not have auto-lock feature. Both are not implemented, due to the DB itself is missing.
-
-
-3. Test.py contains some lightweight tests. At the very end pytest started throwing some strange error 
-(cannot detect the imported modules), which I couldn't fix. The tests are working, but pytest isn't...
-
-
-4. The Database itself, I couldn't finish. I had to choose between sending an improvised implementation of it or research
-proper scaling structures and send only an ERG diagram. I choose the latter.
-   1. My idea is to use horizontal partitioning per dataset, in order to search only through relevant pictures. 
-   Also, the implementation could (and probably should) be done with only one instance of Models and Training_Datasets, 
-   if Model data is uniform for all datasets.
-   2. Further vertical segmentation could be utilized, if image columns are not always requested in bulk.
-
-![ERD](ERD.jpg)
-
-
-## The Process
-
-After I took the first look at the README.md I was "Wow, that's big and probably challenging!".
-And I was right :).... but I was also right that with enough reading it is manageable.
-
-First I started with the readily available advices and went into researching design patterns and interfaces,
-this was my first encounter with the topic. All was understood, but I still couldn't imagine where to expect
-specific problems in order to apply the respective designs in advance.. hence, I decided to come back to this later, if I have time.
-
-Next, I decided to just start writing and take baby steps, first let's load all the necessary data into the program memory.
-
-Having that done I decide to focus on the pre-processing and started with the internal representation.
-
-Later, something, which I should  have probably done earlier, I started thinking about the whole "System design".
-From my studies I knew only the MVC structure and this was my starting point. I modified it a little to reflect the specifics
-of the homework.
-
-Time for tests, great, but that was my first encounter with this topic as well. So I had to do some proper research before
-I write anything.
-
-With no time left, I decided to research scalable database design instead of sending just any DB. The simplest optimizations
-I came up with (for relational DB) were horizontal and vertical partitioning. Which, I believe, will bring significant 
-benefits at scale (not much in the beginning).
-
-As you can see, I've learned a lot, and ultimately I'm very grateful for that challenge! :) 
-
-I'm sure my delivery is far from perfect, and I would highly appreciate your constructive feedback 
-(e.g. as in the Basic Example)
-
-Cheers,
-Todor
-
