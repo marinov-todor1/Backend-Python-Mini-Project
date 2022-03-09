@@ -1,11 +1,10 @@
 # Backend Python Mini-Project 🦾
 
-#### Things yet to be fixed: 
-1. pytest needs debugging to resolve "ModuleNotFoundError:", while the module is definitely there
-2. Reader.py - All arrays are stored in the DB as strings. Converting them back to arrays and keeping the floating point
-values intact appears to require some additional encoding/decoding trickery. Ideally, different database technology should be used,
-one with native data type "array". Note: The more I read about how numpy works the worst idea it seems to convert the arrays 
-into strings and back - probably I will go with different DB.
+#### Next for improvement: 
+1. pytest needs debugging to resolve "ModuleNotFoundError:", as the module is obviously there and the error message seems misleading
+2. Reader.py - All arrays are stored in the DB as strings in SQLite. Ideally, different database technology should be used,
+one with native data type "array". Note: SQLite was chosen due to time constraints - the project had to be done in 3 days, 
+which didn't leave much room for investigation on new DB technologies.
 
 ### How to run
 

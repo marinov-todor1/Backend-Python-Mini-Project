@@ -4,3 +4,5 @@ Tenyks/
 .open
 .DS_Store
 .open
+.idea/
+__pycache__/
