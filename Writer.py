@@ -2,8 +2,6 @@
 import json
 import numpy as np
 
-db_dir = "./datasets.db"
-
 
 # check if training dataset already exist with such name
 def check_dataset_name(dataset_name, cursor):

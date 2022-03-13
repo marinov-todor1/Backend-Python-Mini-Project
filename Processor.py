@@ -7,9 +7,6 @@ import sqlite3
 import itertools
 
 
-single_dataset_dir = "./dataset_data/human_dataset"
-
-
 def get_dataset_paths(datasets_dir):
     """" Compute folder structure and naming """
 
