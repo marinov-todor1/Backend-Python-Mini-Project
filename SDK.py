@@ -14,7 +14,13 @@ def main():
                          "Example: /Users/todo/PycharmProjects/Tenyks/dataset_data\n")
 
     # SDK sample call to extract and save all data into the DB
-    Processor.add_data_to_db(db_dir, datasets_dir)
+    try:
+        Processor.add_data_to_db(db_dir, datasets_dir)
+    # In Processor.py (line 111) there is a check preventing the user from inserting two datasets with the same name in
+    # the DB. Hence, running the SDK.py a second time will raise an error. The purpose of this try-except is strickly
+    # for review purposes.
+    except:
+        pass
 
     # SDK sample call to load single image data
     image = Reader.read_img_data("human_dataset", "hybrid_model", "111.jpg", cursor)
