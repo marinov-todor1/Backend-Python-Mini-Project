@@ -114,7 +114,7 @@ def add_data_to_db(db_dir, datasets_dir):
     # Check if datasets names already exist and record them into the db
     for dataset_name in datasets_paths.keys():
         if Writer.check_dataset_name(dataset_name, cursor):
-            raise Exception(f"A record with name {dataset_name} already exists in table routing_table")
+            raise Exception(f"A record with name {dataset_name} already exists in table 'datasets'")
 
     # generate dataset info
     datasets_info = []

@@ -6,3 +6,4 @@ Tenyks/
 .open
 .idea/
 __pycache__/
+conftest.py

@@ -7,8 +7,8 @@ datasets_dir = "./dataset_data/"
 connection = sqlite3.connect(db_dir, detect_types=sqlite3.PARSE_DECLTYPES)
 cursor = connection.cursor()
 
-def main():
 
+def main():
     # SDK sample call to extract and save all data into the DB
     Processor.add_data_to_db(db_dir, datasets_dir)
 
@@ -39,7 +39,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
