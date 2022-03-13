@@ -1,6 +1,6 @@
 # Backend Python Mini-Project 🦾
 
-#### Comments: 
+### Comments: 
 1. Pytest was misbehaving because, apparently, it doesn't like __ init __.py files in the root directory. 
 Removing it solved the problem, however for bigger projects folder structure should be cautiously considered.
 2. Reader.py - All arrays are stored in the DB as strings in SQLite. Ideally, different database technology should be used,
@@ -8,7 +8,6 @@ one with native data type "array". Note: SQLite was chosen due to time constrain
 which didn't leave much room for investigation on new DB technologies.
 
 ### How to run
-
 By running SDK.py it will extract and process all data, and save it into the DB. Also it will retrieve samples from the 
 DB for image, model and dataset.  
 After the first run line 13 "Processor.add_data_to_db(db_dir, datasets_dir)" should be excluded/commented, since the 

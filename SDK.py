@@ -19,6 +19,7 @@ def main():
     # In Processor.py (line 111) there is a check preventing the user from inserting two datasets with the same name in
     # the DB. Hence, running the SDK.py a second time will raise an error. The purpose of this try-except is strickly
     # for review purposes.
+    # Also the DB is protected with CREATE TABLE IF NOT EXISTS
     except:
         pass
 
