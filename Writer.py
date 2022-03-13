@@ -1,7 +1,6 @@
 # Interface for writing in the DB (probably singleton if the DB does not have auto-lock functionality)
 import json
 import numpy as np
-import Reader
 
 db_dir = "./datasets.db"
 
@@ -30,7 +29,7 @@ def create_datasets_table_record(name, size, type, cursor):
 
 
 def create_images_table(dataset_name, cursor):
-    query1 = "CREATE TABLE "
+    query1 = "CREATE TABLE IF NOT EXISTS "
     query2 = "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL, bbox TEXT, " \
             "category_id TEXT, model_img_bbox TEXT, model_img_category TEXT, model_img_heatmap TEXT, " \
             "model_img_activations TEXT, dataset_name TEXT NOT NULL, model_id INTEGER NOT NULL, " \

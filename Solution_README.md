@@ -1,7 +1,8 @@
 # Backend Python Mini-Project 🦾
 
-#### Next for improvement: 
-1. pytest needs debugging to resolve "ModuleNotFoundError:", as the module is obviously there and the error message seems misleading
+#### Comments: 
+1. Pytest was misbehaving because apparently it doesn't like __ init __.py files in the root directory. 
+Removing it solved the problem, however for bigger projects folder structure should be cautiously considered.
 2. Reader.py - All arrays are stored in the DB as strings in SQLite. Ideally, different database technology should be used,
 one with native data type "array". Note: SQLite was chosen due to time constraints - the project had to be done in 3 days, 
 which didn't leave much room for investigation on new DB technologies.
